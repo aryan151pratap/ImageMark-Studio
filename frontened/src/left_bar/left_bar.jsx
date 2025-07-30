@@ -257,7 +257,7 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
                   </div>
                   {(loading === folder.folder) ?
                     <div className="w-full flex items-center justify-center p-2 border-t border-slate-200">
-                      <div className="w-8 h-8 border-4 border-dashed rounded-full animate-spin border-blue-500"></div>
+                      <div className="w-8 h-8 border-4 border-t-transparent rounded-full animate-spin border-slate-500"></div>
                     </div>
 
                     :
