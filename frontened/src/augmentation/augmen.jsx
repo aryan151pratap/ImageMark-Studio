@@ -22,6 +22,7 @@ function ImageAugmentor() {
   const [selectedAugmentation, setSelectedAugmentation] = useState("adjust");
   const [previewImage, setPreviewImage] = useState(null);
   const [previewLoading, setPreviewLoading] = useState(false);
+  const [filename, setFilename] = useState(null);
   
   const originalImageRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -33,6 +34,7 @@ function ImageAugmentor() {
       const reader = new FileReader();
       reader.onload = () => {
         setOriginalImage(reader.result);
+		setFilename(file.name);
         setAugmentedImages([]);
         setSelectedAugmentation("adjust");
         resetSettings();
@@ -660,7 +662,7 @@ function ImageAugmentor() {
                 
                 {augmentedImages.length > 0 ? (
                   <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2">
-                    {augmentedImages.map((img) => (
+                    {augmentedImages.map((img, index) => (
                       <div key={img.id} className="border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-50">
                         <div className="bg-gray-100 p-4 flex items-center justify-center" style={{ height: '150px' }}>
                           <img 
@@ -675,8 +677,11 @@ function ImageAugmentor() {
                               {img.width} × {img.height}px
                             </span>
                             <div className="flex space-x-2">
+								<div className="ml-auto text-sm flex items-center text-gray-600">
+									<p>{`${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`}</p>
+								</div>
                               <button
-                                onClick={() => downloadImage(img.url)}
+                                onClick={() => downloadImage(img.url, `${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`)}
                                 className="text-gray-600 hover:text-blue-600 transition-colors p-1"
                                 title="Download"
                               >
