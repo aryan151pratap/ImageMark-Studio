@@ -1,6 +1,6 @@
-import { FaFile, FaFileAlt, FaHighlighter, FaInfoCircle, FaSignOutAlt } from "react-icons/fa";
+import { FaCrop, FaFile, FaFileAlt, FaHighlighter, FaInfoCircle, FaSignOutAlt } from "react-icons/fa";
 
-function Top_bar({ setOpenContent, setOpenStudio, setFiles, setCurrentFile }){
+function Top_bar({ setOpenContent, setFiles, setCurrentFile }){
 
 	const handle_logout = () => {
 		localStorage.removeItem('username');
@@ -10,8 +10,8 @@ function Top_bar({ setOpenContent, setOpenStudio, setFiles, setCurrentFile }){
 
 	return(
 		<div className="w-full flex bg-slate-100 text-white">
-			<header className="h-12 w-full flex flex-row bg-slate-800 items-center">
-				<p className="h-full capitalize items-center flex px-2 font-bold text-lg">
+			<header className="h-12 w-full flex flex-row bg-slate-800 items-center overflow-auto scrollbar-hide">
+				<p className="shrink-0 h-full capitalize items-center flex px-2 font-bold text-lg">
 					<div className="relative mr-3">
 						<FaFile className="text-green-300 border-3 border-dashed border-green-300 rounded-full"/>
 					</div>
@@ -21,8 +21,7 @@ function Top_bar({ setOpenContent, setOpenStudio, setFiles, setCurrentFile }){
 					<button
 						className="flex gap-1 items-center p-1 border border-green-600 bg-green-700/30 px-2 rounded cursor-pointer hover:bg-green-700/60"
 						onClick={() => {
-							setOpenStudio(true);
-							setOpenContent(false);
+							setOpenContent('studio');
 							setFiles([]);
 							setCurrentFile(null);
 						}} 
@@ -33,14 +32,24 @@ function Top_bar({ setOpenContent, setOpenStudio, setFiles, setCurrentFile }){
 					<button
 						className="flex gap-1 items-center p-1 border border-blue-600 bg-blue-700/30 px-2 rounded cursor-pointer hover:bg-blue-700/60"
 						onClick={() => {
-							setOpenContent(true);
-							setOpenStudio(false);
+							setOpenContent('augmentation');
+							setFiles([]);
+							setCurrentFile(null);
+						}} 
+					>
+						<FaCrop className="text-blue-400"/>
+						Augmentation
+					</button>
+					<button
+						className="flex gap-1 items-center p-1 border border-yellow-600 bg-yellow-700/30 px-2 rounded cursor-pointer hover:bg-yellow-700/60"
+						onClick={() => {
+							setOpenContent('document');
 							setFiles([]);
 							setCurrentFile(null);
 						}}
 					>
-						<FaInfoCircle className="text-blue-400"/>
-						Content
+						<FaInfoCircle className="text-yellow-400"/>
+						Document
 					</button>
 					<button className="flex gap-1 text-red-400 items-center font-semibold border border-red-700  bg-red-700/30 px-2 rounded cursor-pointer hover:bg-red-700/60"
 						onClick={handle_logout}

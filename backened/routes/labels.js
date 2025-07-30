@@ -85,7 +85,7 @@ router.post('/rename', async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    const exists = await Label.findOne({ folder });
+    const exists = await Label.findOne({ userId: user._id, folder });
 
     if(exists) return res.status(404).json({message: 'Already folder exists'});
 
@@ -116,7 +116,7 @@ router.post('/files', async (req, res) => {
 
     if (!user) return res.status(404).json({ error: "User not found" });
 
-    const data = await Label.findOne({ folder }).select('folder files.filename');
+    const data = await Label.findOne({ userId: user._id, folder }).select('folder files.filename');
 
     res.status(200).json({ files: data });
 

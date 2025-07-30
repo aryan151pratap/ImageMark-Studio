@@ -14,7 +14,7 @@ const YoloExporter = ({ boxes, imgWidth, imgHeight }) => {
       const width = box.width / imgWidth;
       const height = box.height / imgHeight;
 
-      return `${box.classId} ${x_center.toFixed(6)} ${y_center.toFixed(6)} ${width.toFixed(6)} ${height.toFixed(6)}`;
+      return `${box.label} ${x_center.toFixed(6)} ${y_center.toFixed(6)} ${width.toFixed(6)} ${height.toFixed(6)}`;
     }).join('\n');
 
     const blob = new Blob([yoloData], { type: 'text/plain' });

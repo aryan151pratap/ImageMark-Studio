@@ -17,7 +17,7 @@ import {
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrentFile, setDownload, setOpenContent, setOpenStudio, setFile, file }) {
+function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrentFile, setOpenContent, setFile, file }) {
   const [open, setOpen] = useState(false);
   const [add, setAdd] = useState(false);
   const [addfolder, setAddfolder] = useState("");
@@ -315,9 +315,7 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
                         className="flex items-center border-t-2 border-slate-200 gap-2 w-full px-4 py-2.5 text-left hover:bg-red-500/20 hover:text-red-300"
                         onClick={() => {
                           setFiles([]);
-                          setOpenContent(false);
-                          setOpenStudio(false);
-                          setDownload(folder.folder);
+                          setOpenContent(folder.folder);
                           setOption(null);
                         }}
                       >

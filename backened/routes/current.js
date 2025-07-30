@@ -11,10 +11,10 @@ router.put("/update/:email", upload.single("file"), async (req, res) => {
     const updateData = {}
     if (req.file) {
 		const base64Image = req.file.buffer.toString("base64");
-		updateData.image = `data:${req.file.mimetype};base64,${base64Image}`;
-		updateData.filename = req.file.originalname
-		updateData.contentType = req.file.mimetype
-		updateData.labels = []
+      updateData.image = `data:${req.file.mimetype};base64,${base64Image}`;
+      updateData.filename = req.file.originalname
+      updateData.contentType = req.file.mimetype
+      updateData.labels = []
     }
     if (req.body.labels) {
       try {
@@ -65,14 +65,14 @@ router.get("/image/:email", async (req, res) => {
     const user = await User.findOne({ email: req.params.email }).select('image filename contentType folder labels')
     if (!user || !user.image) return res.status(404).send("Image not found");
 
-	res.status(200).json({
-		data : {
-			image: user.image,
-			filename: user.filename,
-			folder: user.folder,
-			labels: user.labels
-		}
-	})
+    res.status(200).json({
+      data : {
+        image: user.image,
+        filename: user.filename,
+        folder: user.folder,
+        labels: user.labels
+      }
+    })
   } catch {
     res.status(404).send("Image not found")
   }

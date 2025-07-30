@@ -7,6 +7,8 @@ import CreateAccount from './account/login'; // Import your form component
 import File from './component/file';
 import YoloTrainingGuide from './component/content';
 import Download from './component/download';
+import ImageAugmentor from './augmentation/augmen';
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,9 +18,7 @@ function App() {
   const [folder, setFolder] = useState(null);
   const [files, setFiles] = useState([]);
   const [currentFile, setCurrentFile] = useState(null);
-  const [openContent, setOpenContent] = useState(false);
-  const [openStudio, setOpenStudio] = useState(true);
-  const [download, setDownload] = useState(null);
+  const [openContent, setOpenContent] = useState('studio');
   const [file, setFile] = useState([]);
 
 
@@ -61,12 +61,12 @@ function App() {
         :
         <div className='h-full w-full'>
           <div className='w-full border-b border-slate-200'>
-            <Top_bar setOpenContent={setOpenContent} setOpenStudio={setOpenStudio} setFiles={setFiles} setCurrentFile={setCurrentFile}/>
+            <Top_bar setOpenContent={setOpenContent} setFiles={setFiles} setCurrentFile={setCurrentFile}/>
           </div>
 
           <div className='h-full w-full flex flex-row'>
             <div className='w-fit sticky top-0 sm:max-h-[93vh] md:h-full bg-white'>
-              <Left_bar user={user} folders={folder} setFolders={setFolder} setFiles={setFiles} currentFile={currentFile} setCurrentFile={setCurrentFile} setDownload={setDownload} setOpenContent={setOpenContent} setOpenStudio={setOpenStudio}
+              <Left_bar user={user} folders={folder} setFolders={setFolder} setFiles={setFiles} currentFile={currentFile} setCurrentFile={setCurrentFile} setOpenContent={setOpenContent}
                 setFile={setFile} file={file}
               />
             </div>
@@ -76,14 +76,18 @@ function App() {
                 <File files={files} user={user} currentFile={currentFile} setCurrentFile={setCurrentFile} setFiles={setFiles} setFile={setFile} file={file}/>
               </div>
               :
-              openContent ? <YoloTrainingGuide/>
+              openContent === 'document' ? 
+              <YoloTrainingGuide/>
               :
-              openStudio  ? 
+              openContent === 'studio'  ? 
               <div className='h-full w-full'>
                 <Studio user={user} folder={folder}/>
               </div>
               :
-              download && <Download download={download} user={user} setFiles={setFiles}/>
+              openContent === 'augmentation'  ? 
+              <ImageAugmentor/>
+              :
+              <Download download={openContent} user={user} setFiles={setFiles}/>
                       
             }
             

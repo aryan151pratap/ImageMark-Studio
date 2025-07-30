@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 app.use(cors({
-  origin: 'http://192.168.27.50:5173',
+  origin: ['http://192.168.27.50:5173', 'https://imagemark-studio-1.onrender.com'],
   credentials: true,
 }));
 app.use(express.json());
