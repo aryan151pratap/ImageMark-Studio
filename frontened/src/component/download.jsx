@@ -5,6 +5,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 function Download({ download ,user}){
 	const [labels, setLabels] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	const downloadAnnotations = async (folder) => {
 		const response = await fetch(`${apiUrl}/api/download/${download}/${user}`);
@@ -35,6 +36,7 @@ function Download({ download ,user}){
 	useEffect(() => {
 		const get_labels = async function(){
 			try{
+				setLoading(true);
 				const res = await fetch(`${apiUrl}/api/labels/${download}/${user}`, {
 					method: 'GET'
 				});
@@ -49,6 +51,8 @@ function Download({ download ,user}){
 }				}
 			} catch (err) {
 				console.error(err);
+			} finally {
+				setLoading(false);
 			}
 		}
 
@@ -81,16 +85,23 @@ function Download({ download ,user}){
 					<div className="flex flex-row p-2">
 						<h3 className="h-full flex items-center font-bold text-slate-800 mb-3">Labels</h3>
 					</div>
+					{loading ? 
+					<div className="flex flex-col gap-4 justify-center items-center h-50 md:h-full">
+						<div className="w-12 h-12 border-4 border-t-transparent border-green-500 rounded-full animate-spin"></div>
+						<span>Loading....</span>
+					</div>
+					:	
 					<div className="px-4 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 flex flex-wrap gap-2">
 						{labels?.map((label, index) => (
-						<span
+							<span
 							key={index}
 							className="text-sm px-3 py-1 bg-slate-100 rounded-lg border border-slate-200 hover:bg-slate-200 transition"
-						>
+							>
 							{index + 1}. {label}
 						</span>
 						))}
 					</div>
+					}
 				</div>
 
 			</div>

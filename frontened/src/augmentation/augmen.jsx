@@ -661,7 +661,7 @@ function ImageAugmentor() {
                 </div>
                 
                 {augmentedImages.length > 0 ? (
-                  <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2">
+                  <div className="p-2 grid grid-cols-1 sm:grid-cols-3 gap-4 max-h-[400px] overflow-y-auto pr-2">
                     {augmentedImages.map((img, index) => (
                       <div key={img.id} className="border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-gray-50">
                         <div className="bg-gray-100 p-4 flex items-center justify-center" style={{ height: '150px' }}>
@@ -677,9 +677,7 @@ function ImageAugmentor() {
                               {img.width} × {img.height}px
                             </span>
                             <div className="flex space-x-2">
-								<div className="ml-auto text-sm flex items-center text-gray-600">
-									<p>{`${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`}</p>
-								</div>
+								
                               <button
                                 onClick={() => downloadImage(img.url, `${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`)}
                                 className="text-gray-600 hover:text-blue-600 transition-colors p-1"
@@ -700,6 +698,9 @@ function ImageAugmentor() {
                               </button>
                             </div>
                           </div>
+						<div className="ml-auto text-sm flex items-center text-gray-600">
+							<p>{`${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`}</p>
+						</div>
                         </div>
                       </div>
                     ))}
