@@ -285,7 +285,7 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
                                   setCurrentFile({ folder: i.folder, filename: j.filename });
                                 }}
                               >
-                                <FaFile />
+                                <FaFile className="shrink-0"/>
                                 <span className="text-[15px] whitespace-nowrap overflow-hidden text-ellipsis">{j.filename}</span>
                               </div>
                             ));

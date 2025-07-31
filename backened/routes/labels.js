@@ -195,4 +195,29 @@ router.delete('/delete_file/:email/:folder/:fileName', async (req, res) => {
   }
 });
 
+router.get('/rename_file/:email/:folder/:fileName/:newName', async (req, res) => {
+  try {
+    const { email, folder, fileName, newName } = req.params;
+    const user = await User.findOne({ email }).select('_id');
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const result = await Label.updateOne(
+      { userId: user._id, folder, "files.filename": fileName },
+      { $set: { "files.$.filename": newName } }
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ error: "File not found or not renamed" });
+    }
+
+    res.status(200).json({ message: "File renamed successfully!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;

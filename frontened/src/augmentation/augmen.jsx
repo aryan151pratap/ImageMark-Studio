@@ -581,13 +581,13 @@ function ImageAugmentor() {
         <div className="lg:col-span-2 h-[86vh] sm:border-t md:border-t-0 md:border-l border-slate-200 overflow-auto">
           {originalImage ? (
             <div className="bg-white h-full">
-				{/* Preview Section */}
-			  <div className="sticky top-0 z-50 flex border-b border-slate-200 bg-white justify-between items-center p-2 mb-2">
-				<h2 className="text-xl font-semibold text-gray-800">Live Preview</h2>
-				<span className="text-sm text-gray-500">
-				{previewLoading ? "Generating preview..." : "Changes update in real-time"}
-				</span>
-			  </div>
+            {/* Preview Section */}
+              <div className="sticky top-0 z-50 flex border-b border-slate-200 bg-white justify-between items-center p-2 mb-2">
+                <h2 className="text-xl font-semibold text-gray-800">Live Preview</h2>
+                <span className="text-sm text-gray-500">
+                {previewLoading ? "Generating preview..." : "Changes update in real-time"}
+                </span>
+              </div>
               <div className="p-2 relative mb-8">
                 
                 <div className="bg-gray-100 rounded-lg flex flex-col items-center">

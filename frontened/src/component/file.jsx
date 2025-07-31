@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { FaSadCry, FaSadTear, FaTimes, FaTractor, FaTrash } from "react-icons/fa";
+import { FaSadCry, FaSadTear, FaSave, FaTimes, FaTractor, FaTrash } from "react-icons/fa";
 import Yolo from "./yolo";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -11,6 +11,8 @@ function File({ files, user, currentFile, setCurrentFile, setFiles, setFile, fil
 	const [loading, setLoading] = useState(false);
 	const lastFetchedFileRef = useRef(null); 
 	const [labels, setLabels] = useState([]);
+	const [rename, setRename] = useState('');
+	const [open_rename, setOpen_rename] = useState(false);
 
 	useEffect(() => {
 		if (files.length > 0) {
@@ -94,6 +96,41 @@ function File({ files, user, currentFile, setCurrentFile, setFiles, setFile, fil
 		}
 	}
 
+	const handle_rename_file = async function(e){
+		try{
+			const res = await fetch(`${apiUrl}/api/rename_file/${user}/${currentFile.folder}/${currentFile.filename}/${rename}`, {
+				method: 'GET',
+			});
+			const data = await res.json();
+			if (res.ok) {
+				const updated = files.map(i =>
+					i.folder === e.folder && i.filename === e.filename
+						? { ...i, filename: rename }
+						: i
+				);
+				setFile(file.map(f =>
+					f.folder === e.folder
+						? {
+							...f,
+							files: f.files.map(i =>
+								i.filename === e.filename
+									? { ...i, filename: rename }
+									: i
+							)
+						}
+						: f
+				));
+				setFiles(updated);
+				setRename('');
+				console.log('Delete file successfully');
+			} else {
+				console.error('Failed to fetch', data);
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 
 	return (
 		<div className="w-full h-full bg-white border-l border-slate-200">
@@ -131,12 +168,35 @@ function File({ files, user, currentFile, setCurrentFile, setFiles, setFile, fil
 									{i}
 								</button>
 							))}
-							<button className="flex gap-2 p-1 items-center text-sm px-2 ml-auto border border-red-400 text-red-700 bg-red-200 hover:text-red-200 hover:bg-red-700 cursor-pointer"
-								onClick={() => handle_delete_file(currentFile)}
-							>
-								<FaTrash/>
-								Delete File
-							</button>
+							<div className="ml-auto flex flex-row overflow-auto">
+								{open_rename &&
+								<input type="text" 
+									value={rename}
+									onChange={(e) => setRename(e.target.value)}
+									className="outline-none border border-blue-500 px-2 bg-blue-100 text-blue-700 text-sm"
+									placeholder="Enter new name . . . ."
+								/>
+								}
+								<button className="flex gap-2 p-1 items-center text-sm px-2 ml-auto border border-green-400 text-green-700 bg-green-200 hover:text-green-200 hover:bg-green-700 cursor-pointer"
+									onClick={() => {
+										if(open_rename){
+											if(rename.trim()) handle_rename_file(currentFile);
+											setOpen_rename(false);
+										} else {
+											setOpen_rename(true);
+										}
+									}}
+								>
+									{open_rename ? <FaSave/> : <FaTrash/>}
+									{open_rename ? 'Save' : 'Rename'}
+								</button>
+								<button className="flex gap-2 p-1 items-center text-sm px-2 ml-auto border border-red-400 text-red-700 bg-red-200 hover:text-red-200 hover:bg-red-700 cursor-pointer"
+									onClick={() => handle_delete_file(currentFile)}
+								>
+									<FaTrash/>
+									Delete File
+								</button>
+							</div>	
 						</div>
 						{file_data?.labels?.length > 0 ?
 							currentFeature === 'table' ?
