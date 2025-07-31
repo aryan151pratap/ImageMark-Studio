@@ -263,13 +263,15 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
                     :
 
                     currentFolder.includes(folder.folder) && (
-                      <div className="w-full grid grid-cols-2 sm:flex sm:flex-col bg-slate-100 border-t border-slate-200">
+                      <div className="w-full grid grid-cols-2 sm:flex sm:flex-col border-t border-slate-200">
                         {file?.map((i, index_1) => {
                           if (i.folder === folder.folder) {
                             return i.files?.map((j, index_2) => (
                               <div
                                 key={index_2}
-                                className={`text-slate-700 flex flex-row gap-2 items-center px-4 p-1 ${index_2 >= i.files.length-2 ? '' : 'border-b'} sm:border-b sm:last:border-b-0 border-r sm:border-r-0 border-slate-200 ${currentFile?.filename === j.filename ? 'bg-slate-700 text-white' : ''} hover:bg-slate-900 hover:text-white`}
+                                className={`text-slate-700 flex flex-row gap-2 items-center px-4 p-1 bg-slate-100 
+                                  ${(i.files.length % 2 === 0 ? index_2 >= i.files.length-2 : index_2 >= i.files.length-1) ? '' : 'border-b'} 
+                                  sm:border-b sm:last:border-b-0 border-r sm:border-r-0 border-slate-200 ${currentFile?.filename === j.filename ? 'bg-slate-700 text-white' : ''} hover:bg-slate-900 hover:text-white`}
                                 onClick={() => {
                                   setFiles((prev) => {
                                     const exists = prev.some(

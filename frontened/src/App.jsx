@@ -51,6 +51,12 @@ function App() {
     }
   }, [userExists]);
 
+  useEffect(() => {
+    if(files.length === 0){
+      setCurrentFile(null);
+    }
+  }, [files])
+
 
   return (
     <div className='md:max-h-screen w-full'>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCopy, FaCheck, FaChevronDown, FaChevronUp, FaTerminal, FaFileCode, FaRobot, FaLaptopCode } from 'react-icons/fa';
 import Model from './model';
+import PythonYoloTrainingGuide from './pythonContent';
 
 const steps = [
   {
@@ -75,7 +76,7 @@ const YoloTrainingGuide = () => {
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [expandedSteps, setExpandedSteps] = useState(Array(steps.length).fill(true));
   const [pages, setPages] = useState(1);
-  const all_pages = [1, 2];
+  const all_pages = [1, 2, 3];
 
   const toggleStep = (index) => {
     const newExpandedSteps = [...expandedSteps];
@@ -245,6 +246,9 @@ const YoloTrainingGuide = () => {
         </footer>
       </div>
 	  :
+    pages === 2 ?
+    <PythonYoloTrainingGuide/>
+    :
 		<div>
 			<Model/>
 		</div>

@@ -99,18 +99,18 @@ function File({ files, user, currentFile, setCurrentFile, setFiles, setFile, fil
 		<div className="w-full h-full bg-white border-l border-slate-200">
 			<div className="w-full h-full flex flex-col md:flex-row">
 				<div className="w-full">
-					<div className="flex flex-row border-b border-slate-200 w-full h-fit">
+					<div className="flex flex-row border-b border-slate-200 w-full h-fit overflow-auto scrollbar-hide">
 						{files.map((file, index) => (
 							<div
 							key={index}
 							className={`border-r border-slate-200 px-2 py-1 flex flex-row gap-2 items-center cursor-pointer
 								${currentFile?.filename === file.filename ? 'bg-slate-700 text-white' : 'bg-white hover:bg-slate-200'}`}>
-								<p
+								<p className="text-center whitespace-nowrap"
 									onClick={() => handleTabClick(file)}
-									>{file.filename}</p>
+								>{file.filename}</p>
 								<FaTimes className={`text-sm hover:text-red-500 ${currentFile?.filename === file.filename ? 'text-white' : 'text-slate-500'}`}
 									onClick={() => handle_delete(file)}
-									/>
+								/>
 							</div>
 						))}
 					</div>
