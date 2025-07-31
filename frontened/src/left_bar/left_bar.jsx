@@ -183,7 +183,7 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
       </div>
 
       {open && (
-        <div className="h-full w-48 flex flex-col text-white">
+        <div className="h-full w-full sm:w-48 flex flex-col text-white">
           <div className="w-full p-2 border-b border-slate-200 flex">
             <div
               className="ml-auto text-black items-center flex"
@@ -215,7 +215,7 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
               {folders?.map((folder, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center border-b border-slate-200 cursor-pointer hover:bg-slate-50"
+                  className="flex flex-col items-center sm:border-b border-slate-200 cursor-pointer hover:bg-slate-50"
                   ref={(el) => (optionRefs.current[folder.folder] = el)}
                 >
                   <div className="relative w-full flex items-center">
@@ -263,13 +263,13 @@ function Left_bar({ user, folders, setFolders, setFiles, currentFile, setCurrent
                     :
 
                     currentFolder.includes(folder.folder) && (
-                      <div className="w-full flex flex-col bg-slate-100">
+                      <div className="w-full grid grid-cols-2 sm:flex sm:flex-col bg-slate-100 border-t border-slate-200">
                         {file?.map((i, index_1) => {
                           if (i.folder === folder.folder) {
                             return i.files?.map((j, index_2) => (
                               <div
                                 key={index_2}
-                                className={`text-slate-700 flex flex-row gap-2 items-center px-4 p-1 border-t border-slate-200 ${currentFile?.filename === j.filename ? 'bg-slate-700 text-white' : ''} hover:bg-slate-900 hover:text-white`}
+                                className={`text-slate-700 flex flex-row gap-2 items-center px-4 p-1 ${index_2 >= i.files.length-2 ? '' : 'border-b'} sm:border-b sm:last:border-b-0 border-r sm:border-r-0 border-slate-200 ${currentFile?.filename === j.filename ? 'bg-slate-700 text-white' : ''} hover:bg-slate-900 hover:text-white`}
                                 onClick={() => {
                                   setFiles((prev) => {
                                     const exists = prev.some(

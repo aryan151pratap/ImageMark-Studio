@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaRobot } from "react-icons/fa";
 
 const models = [
   { rank: 1, name: "yolov8n.pt", speed: "⭐⭐⭐⭐⭐", accuracy: "⭐", size: "~5 MB", version: "YOLOv8" },
@@ -105,12 +106,15 @@ const ModelList = () => {
   );
 
   return (
-    <div className="w-full mx-auto p-4">
-      <div className="bg-white p-6 mb-8">
+    <div className="w-full mx-auto p-2 sm:p-4">
+      <div className="bg-white sm:p-6 mb-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">YOLO Models Comparison</h1>
-            <p className="text-gray-600 mt-2">
+          <div className="border border-indigo-100 p-4 rounded-xl shadow-md">
+            <h1 className="flex gap-2 items-center text-center font-bold text-gray-800">
+              <FaRobot className="text-4xl p-2 rounded-full bg-indigo-200 text-indigo-500"/>
+              <p className="md:text-3xl text-xl">YOLO Models Comparison</p>
+            </h1>
+            <p className="text-center text-gray-600 mt-2 px-4 sm:px-10">
               Ranked from fastest to highest accuracy. Filter by version or sort by any column.
             </p>
           </div>
@@ -125,7 +129,7 @@ const ModelList = () => {
           </div>
         </div>
         
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div className="text-xs sm:text-sm items-center justify-center sm:justify-start flex flex-wrap gap-3 mb-6">
           <button 
             onClick={() => setFilter("all")} 
             className={`px-4 py-2 rounded-lg font-medium transition-all ${
@@ -152,7 +156,7 @@ const ModelList = () => {
         </div>
         
         <div className="overflow-x-auto rounded-lg border border-gray-200 shadow">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="text-xs sm:text-sm min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
                 <th 
@@ -237,7 +241,7 @@ const ModelList = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-xl shadow">
-          <h3 className="font-bold text-lg text-gray-800 mb-3">About Speed Ratings</h3>
+          <h3 className="font-bold text-sm sm:text-lg text-gray-800 mb-3">About Speed Ratings</h3>
           <ul className="space-y-2">
             <li className="flex items-center"><span className="text-green-600 mr-2">⭐⭐⭐⭐⭐</span> {`Real-time (>100 FPS)`}</li>
             <li className="flex items-center"><span className="text-teal-600 mr-2">⭐⭐⭐⭐</span> Very Fast (60-100 FPS)</li>

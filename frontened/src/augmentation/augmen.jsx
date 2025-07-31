@@ -243,7 +243,7 @@ function ImageAugmentor() {
   ];
 
   return (
-    <div className="w-full h-full border-l border-slate-200">
+    <div className="w-full h-full border-l border-t border-slate-200">
       <div className="">
         <h1 className="px-4 py-2 text-2xl font-bold text-gray-800 border-b border-slate-200">Advanced Image Augmentor</h1>
       </div>
@@ -698,9 +698,9 @@ function ImageAugmentor() {
                               </button>
                             </div>
                           </div>
-						<div className="ml-auto text-sm flex items-center text-gray-600">
-							<p>{`${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`}</p>
-						</div>
+                          <div className="ml-auto text-sm flex items-center text-gray-600">
+                            <p>{`${filename.split('.')[0]}_${index+1}.${filename.split('.')[1]}`}</p>
+                          </div>
                         </div>
                       </div>
                     ))}

@@ -64,8 +64,8 @@ function App() {
             <Top_bar setOpenContent={setOpenContent} setFiles={setFiles} setCurrentFile={setCurrentFile}/>
           </div>
 
-          <div className='h-full w-full flex flex-row'>
-            <div className='w-fit sticky top-0 sm:max-h-[93vh] md:h-full bg-white'>
+          <div className='h-full w-full flex flex-col sm:flex-row'>
+            <div className='w-full sm:w-fit sm:sticky top-0 sm:max-h-[93vh] md:h-full bg-white'>
               <Left_bar user={user} folders={folder} setFolders={setFolder} setFiles={setFiles} currentFile={currentFile} setCurrentFile={setCurrentFile} setOpenContent={setOpenContent}
                 setFile={setFile} file={file}
               />

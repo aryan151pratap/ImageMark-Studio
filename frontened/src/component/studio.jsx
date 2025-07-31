@@ -397,7 +397,7 @@ function Studio({ user, folder }) {
   };
 
   return (
-    <div className="h-full md:h-[93vh] w-full flex flex-col border border-zinc-300 md:flex-row bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="h-full md:h-[93vh] w-full flex flex-col border border-slate-200 md:flex-row bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Left Panel - Image Canvas */}
       <div className="w-full flex flex-col md:border-r border-zinc-300 h-full overflow-auto">
         <div className="bg-white p-2 flex-1 flex flex-col">
@@ -484,7 +484,7 @@ function Studio({ user, folder }) {
             {(image && imageRef.current) &&
               <div className='flex flex-row gap-2 flex items-center ml-auto'>
                 <div className='h-full shadow-sm bg-slate-100 p-2 rounded'>
-                  <span className='flex gap-1'>
+                  <span className='h-full flex items-center justify-center gap-1'>
                     <span>{imageRef.current.naturalWidth}</span>
                     <span>x</span>
                     <span>{imageRef.current.naturalHeight}</span>
@@ -493,7 +493,7 @@ function Studio({ user, folder }) {
                 <div className="flex justify-center">
                   {ai_loading ?
                     <div
-                      className="text-sm flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-2 rounded-lg shadow-md transition duration-300"
+                      className="text-sm flex items-center gap-1 sm:gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-2 sm:px-5 py-2 rounded-lg shadow-md transition duration-300"
                     >
                       <FaMagic className="text-lg" />
                       Predicting...
@@ -501,7 +501,7 @@ function Studio({ user, folder }) {
                     :
                     <button
                       onClick={handlePredict}
-                      className="text-sm flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition duration-300"
+                      className="text-sm flex items-center gap-1 sm:gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-2 sm:px-4 py-2 rounded-lg shadow-md transition duration-300"
                     >
                       <FaMagic className="text-lg" />
                       Auto-Detect

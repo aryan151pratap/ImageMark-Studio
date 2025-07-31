@@ -107,7 +107,7 @@ const YoloTrainingGuide = () => {
   };
 
   return (
-    <div className="w-full border-l border-slate-200 overflow-auto">
+    <div className="w-full border-l border-slate-200 overflow-auto border-t border-slate-200">
 		<div className="flex flex-wrap gap-2 mt-3 justify-center">
 			{all_pages.map((i, index) => (
 				<button
