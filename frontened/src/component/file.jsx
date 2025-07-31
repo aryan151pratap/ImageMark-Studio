@@ -165,7 +165,7 @@ function File({ files, user, currentFile, setCurrentFile, setFiles, setFile, fil
 												`}
 									onClick={() => setCurrentFeature(i)}
 								>
-									{i}
+									<span className="text-center whitespace-nowrap">{i}</span>
 								</button>
 							))}
 							<div className="ml-auto flex flex-row overflow-auto">
