@@ -108,18 +108,18 @@ const ModelList = () => {
   return (
     <div className="w-full mx-auto p-2 sm:p-4">
       <div className="bg-white sm:p-6 mb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-          <div className="border border-indigo-100 p-4 rounded-xl shadow-md">
-            <h1 className="flex gap-2 items-center text-center font-bold text-gray-800">
-              <FaRobot className="text-4xl p-2 rounded-full bg-indigo-200 text-indigo-500"/>
-              <p className="md:text-3xl text-xl">YOLO Models Comparison</p>
+        <div className="w-full flex flex-col justify-between items-start md:items-center mb-6 gap-4">
+          <div className="w-full border border-indigo-100 p-4 rounded-xl shadow-md">
+            <h1 className="flex flex-col gap-2 justify-center items-center text-center font-bold text-gray-800">
+              <FaRobot className="sm:text-7xl sm:p-4 text-6xl p-3 rounded-full bg-indigo-200 text-indigo-500"/>
+              <p className="md:text-3xl sm:text-xl text-2xl">YOLO Models Comparison</p>
             </h1>
-            <p className="text-center text-gray-600 mt-2 px-4 sm:px-10">
+            <p className="text-center text-gray-600 mt-2 px-6 sm:px-10">
               Ranked from fastest to highest accuracy. Filter by version or sort by any column.
             </p>
           </div>
           
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 w-full md:w-auto">
+          <div className="w-full bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
             <p className="font-medium text-gray-700">Key Metrics</p>
             <div className="flex flex-wrap gap-3 mt-2">
               <span className="px-3 py-1 rounded-full text-sm bg-green-100 text-green-800">Speed: ⭐⭐⭐⭐⭐ = Fastest</span>
